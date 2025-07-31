@@ -7,12 +7,11 @@ const AllCampaigns = () => {
   const [allCampaigns, setAllCampaigns] = useState([]);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchAllCampaigns = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/campaign/`);
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/campaign/`);
         const data = await res.json();
 
         if (!res.ok) {

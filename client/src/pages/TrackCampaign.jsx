@@ -11,12 +11,11 @@ const TrackCampaign = () => {
   const pendingCount = progress.filter(user => user.status === 'pending').length;
   const interestedCount = progress.filter(user => user.status === 'interested').length;
   const notInterestedCount = progress.filter(user => user.status === 'not_interested').length;
-  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchCampaignProgress = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/campaign/${campaignId}`);
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/campaign/${campaignId}`);
         const data = await res.json();
 
         if (!res.ok) {

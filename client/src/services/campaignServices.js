@@ -1,7 +1,5 @@
-const baseUrl = import.meta.env.VITE_BASE_URL;
-
 export const createCampaign = async({ name, description, users, steps }) => {
-    const res = await fetch(`${baseUrl}/api/campaign/create`, {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/campaign/create`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
