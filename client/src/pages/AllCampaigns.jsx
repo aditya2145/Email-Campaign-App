@@ -7,7 +7,7 @@ const AllCampaigns = () => {
   const [allCampaigns, setAllCampaigns] = useState([]);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const baseUrl = import.meta.env.BASE_URL;
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchAllCampaigns = async () => {
