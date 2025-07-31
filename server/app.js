@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ origin: 'https://email-campaign-app.vercel.app/' }));
+app.use(cors({ origin: 'https://email-campaign-app.vercel.app' }));
 
 app.use('/api/campaign', campaignRoute);
 app.use('/api/progress', progressRoute);
