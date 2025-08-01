@@ -33,7 +33,7 @@ const emailRunner = asyncHandler(async(req, res) => {
                 subject: step.heading || "Campaign Email",
                 html: `
                     <p>${step.template}</p>
-                    <img src="${process.env.BASE_URL}/api/progress/open/${progress._id}/${step.id}" width="1" height="1" />
+                    <a href="${process.env.BASE_URL}/api/progress/open/${progress._id}/${step.id}" >Learn More</a>
                 `
             });
 
