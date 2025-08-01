@@ -32,7 +32,11 @@ const AboutPage = () => {
             </span>
           </li>
           <li>Sends emails using <strong>Nodemailer</strong> with Gmail SMTP</li>
-          <li>Track email opens using invisible pixel tracking</li>
+          <li>
+            Tracks email opens using a{" "}
+            <strong>confirmation link (anchor tag)</strong>. When the user clicks this link,
+            it triggers a backend GET request and marks the email as opened.
+          </li>
           <li>Handle wait steps, conditions, and email delivery logic</li>
           <li>Filter campaign users by status (Pending, Interested, Not Interested)</li>
           <li>View each user's current progress step and actions</li>

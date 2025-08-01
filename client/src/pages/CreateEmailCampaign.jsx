@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createCampaign } from '../services/campaignServices';
 import emailCampaignSteps from '../data/emailCampaignSteps';
+import emailStepDescription from '../data/emailStepDescription';
 import toast from 'react-hot-toast';
 
 const CreateEmailCampaign = () => {
@@ -10,9 +11,9 @@ const CreateEmailCampaign = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showSteps, setShowSteps] = useState(false);
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
   const [steps] = useState(emailCampaignSteps);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -25,12 +26,13 @@ const CreateEmailCampaign = () => {
 
   const handleAddEmail = () => {
     if (!email) return;
-    if(!emailRegex.test(email)) {
+    if (!emailRegex.test(email)) {
       setError('Invalid email format');
       return;
     }
     setUsers([...users, email]);
     setEmail('');
+    setError(null);
   };
 
   const handleCreateCampaign = async (e) => {
@@ -69,7 +71,9 @@ const CreateEmailCampaign = () => {
 
         <form className="flex flex-col gap-4" onSubmit={handleCreateCampaign}>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Campaign Name</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Campaign Name
+            </label>
             <input
               type="text"
               className="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200"
@@ -81,7 +85,9 @@ const CreateEmailCampaign = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Description
+            </label>
             <textarea
               className="w-full p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200"
               placeholder="Short summary about this campaign..."
@@ -92,7 +98,9 @@ const CreateEmailCampaign = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Target Emails</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Target Emails
+            </label>
             <div className="flex gap-2">
               <input
                 type="email"
@@ -135,6 +143,30 @@ const CreateEmailCampaign = () => {
             {loading ? 'Creating...' : 'Create Campaign'}
           </button>
         </form>
+
+        <div className="mt-8 text-center">
+          <button
+            onClick={() => setShowSteps((prev) => !prev)}
+            className="text-indigo-700 hover:underline font-medium"
+          >
+            {showSteps ? '🔽 Hide Campaign Steps' : '📋 View Steps in This Campaign'}
+          </button>
+        </div>
+
+        {showSteps && (
+          <div className="mt-4 border-t pt-4">
+            <h3 className="text-lg font-semibold text-slate-800 mb-3">
+              🔄 Steps Overview
+            </h3>
+            <ol className="list-decimal pl-6 space-y-2 text-sm text-slate-700">
+              {Object.entries(emailStepDescription).map(([key, desc]) => (
+                <li key={key}>
+                  {desc}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
     </div>
   );
