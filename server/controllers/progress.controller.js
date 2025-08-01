@@ -2,7 +2,7 @@ const CampaignProgress = require("../models/campaignProgress.model");
 const { asyncHandler } = require("../utils/asyncHandler");
 
 const trackEmailOpen = asyncHandler(async(req, res) => {
-    console.log('Email Opened');
+    console.log('Email Opened...');
     const { progressId, stepId } = req.params;
 
     await CampaignProgress.findByIdAndUpdate(
