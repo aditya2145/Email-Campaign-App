@@ -14,18 +14,23 @@ const AboutPage = () => {
           allows marketers or product teams to automate and personalize email flows
           for engagement, reactivation, or onboarding campaigns.
         </p>
+        <p className="mb-4 text-sm text-gray-600">
+          ⚙️ <strong>Note:</strong> For demonstration purposes, the wait duration between steps
+          has been reduced to <strong>2 minutes</strong> instead of days. This helps visualize the
+          full email flow and user transitions in a shorter time window during development.
+        </p>
       </section>
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-2">🛠 Key Features</h2>
         <ul className="list-disc pl-5 space-y-1">
-            <li>
-                Create email campaigns using predefined templates{" "}
-                <span className="text-sm text-gray-500">
-                    (currently one available, but built to scale for use cases like onboarding,
-                    re-engagement, promotions, and more)
-                </span>
-            </li>
+          <li>
+            Create email campaigns using predefined templates{" "}
+            <span className="text-sm text-gray-500">
+              (currently one available, but built to scale for use cases like onboarding,
+              re-engagement, promotions, and more)
+            </span>
+          </li>
           <li>Sends emails using <strong>Nodemailer</strong> with Gmail SMTP</li>
           <li>Track email opens using invisible pixel tracking</li>
           <li>Handle wait steps, conditions, and email delivery logic</li>

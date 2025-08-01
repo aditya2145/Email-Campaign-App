@@ -11,7 +11,7 @@ const emailCampaignSteps = [
     {
         id: 'step2',
         type: 'wait',
-        days: 0.0013,
+        days: 0.0013,   // reduced it to 2 min to visualize the email flow
         next: 'step3',
     },
     {
@@ -41,7 +41,7 @@ const emailCampaignSteps = [
     {
         id: 'step6',
         type: 'wait',
-        days: 0.0013,
+        days: 0.0013,  // reduced it to 2 min to visualize the email flow
         next: 'step7',
     },
     {
