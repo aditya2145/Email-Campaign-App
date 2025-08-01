@@ -9,10 +9,9 @@ const AllCampaigns = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    console.log("BASE:", import.meta.env.VITE_BASE_URL);
     const fetchAllCampaigns = async () => {
       try {
-        const res = await fetch(`https://email-campaign-app-heh4.onrender.com/api/campaign/`);
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/campaign/`);
         const data = await res.json();
 
         if (!res.ok) {
