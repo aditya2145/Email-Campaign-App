@@ -7,7 +7,7 @@ const trackEmailOpen = asyncHandler(async(req, res) => {
 
     await CampaignProgress.findByIdAndUpdate(
         progressId,
-        { $set: { opened: true } },
+        { $addToSet: { opened: stepId } },
     );
 
     const pixel = Buffer.from(
