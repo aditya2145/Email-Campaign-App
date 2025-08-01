@@ -56,7 +56,7 @@ const emailRunner = asyncHandler(async(req, res) => {
 
         if(step.type === "condition") {
             let goTo = step.ifFalse;
-            if(step.condition === "opened" && progress.opened.includes(step.id)) {
+            if(step.condition === "opened" && progress.opened.length !== 0) {
                 goTo = step.ifTrue;
             }
 
