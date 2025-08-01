@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CampaignCard from '../components/CampaignCard';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 
 const AllCampaigns = () => {
+  const [loading, setLoading] = useState(false);
   const [allCampaigns, setAllCampaigns] = useState([]);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchAllCampaigns = async () => {
+      setLoading(true);
       try {
         const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/campaign/`);
         const data = await res.json();
@@ -21,6 +24,9 @@ const AllCampaigns = () => {
       } catch (err) {
         setError(err.message);
       }
+      finally {
+        setLoading(false);
+      }
     };
 
     fetchAllCampaigns();
@@ -29,6 +35,10 @@ const AllCampaigns = () => {
   const filteredCampaigns = allCampaigns?.filter((campaign) =>
     campaign.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if(loading) {
+    return <LoadingSpinner />
+  }
 
   return (
     <div className="w-full flex flex-col gap-6 mx-auto px-6 py-10">

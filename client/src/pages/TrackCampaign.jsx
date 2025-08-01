@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserProgressCard from '../components/UserProgressCard';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const TrackCampaign = () => {
   const { campaignId } = useParams();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [progress, setProgress] = useState([]);
   const [activeFilter, setActiveFilter] = useState('pending');
@@ -14,6 +16,7 @@ const TrackCampaign = () => {
 
   useEffect(() => {
     const fetchCampaignProgress = async () => {
+      setLoading(true);
       try {
         const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/campaign/${campaignId}`);
         const data = await res.json();
@@ -26,12 +29,19 @@ const TrackCampaign = () => {
       } catch (err) {
         setError(err.message);
       }
+      finally {
+        setLoading(false);
+      }
     };
 
     fetchCampaignProgress();
   }, [campaignId]);
 
   const filteredProgress = progress.filter(user => user.status === activeFilter)
+
+  if(loading) {
+    return <LoadingSpinner />
+  }
 
   return (
     <div className="w-full flex flex-col gap-2 mx-auto px-6 py-10">
