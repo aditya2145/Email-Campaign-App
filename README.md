@@ -1,17 +1,16 @@
 # Email-Campaign-App
 
-A schema-driven, adaptive **Email Campaign Engine** built with the MERN stack. Marketers can create multi-step, logic-based email sequences that respond to user behavior like email opens, delays, and conditional branching — all automated.
+This Email Campaign Manager is a lightweight, schema-driven tool for creating and tracking multi-step, condition-based email sequences. It allows marketers or product teams to automate and personalize email flows for engagement, reactivation, or onboarding campaigns.
 
 ---
 
 ## 🚀 Features
 
-- 🎯 Create dynamic email campaigns with customizable logic
-- 📬 Automatically send emails based on user behavior
-- 🕐 Add wait periods between campaign steps
-- 🔍 Track email opens using invisible pixel tracking
-- 📊 Track campaign progress per user
-- 🎛 Filter users by Pending / Interested / Not Interested
-- 🧩 Predefined campaign templates with editable content
+- Create email campaigns using predefined templates (currently one available, but built to scale for use cases like onboarding, re-engagement, promotions, and more)
+- Sends emails using Nodemailer with Gmail SMTP
+- Track email opens using invisible pixel tracking
+- Handle wait steps, conditions, and email delivery logic
+- Filter campaign users by status (Pending, Interested, Not Interested)
+- View each user's current progress step and actions
 
 ---
