@@ -12,6 +12,7 @@ const Navbar = () => {
         </Link>
 
         <div className="flex space-x-6">
+          <NavLink to="/about" label="About This App" pathname={pathname} />
           <NavLink to="/" label="Home" pathname={pathname} />
           <NavLink to="/create" label="Create Campaign" pathname={pathname} />
           <NavLink to="/campaigns" label="All Campaigns" pathname={pathname} />

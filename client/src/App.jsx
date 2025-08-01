@@ -7,6 +7,7 @@ import AllCampaigns from './pages/AllCampaigns'
 import TrackCampaign from './pages/TrackCampaign'
 import Navbar from './components/Navbar'
 import { Toaster } from 'react-hot-toast';
+import AboutPage from './pages/AboutPage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/about' element={<AboutPage />} />
         <Route path='/create' element={<CreateEmailCampaign />} />
         <Route path='/campaigns' element={<AllCampaigns />} />
         <Route path='/campaign/:campaignId' element={<TrackCampaign />} />
