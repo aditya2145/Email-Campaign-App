@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { createCampaign } from '../services/campaignServices';
 import emailCampaignSteps from '../data/emailCampaignSteps';
-import emailStepDescription from '../data/emailStepDescription';
 import toast from 'react-hot-toast';
 
 const CreateEmailCampaign = () => {
@@ -158,13 +157,72 @@ const CreateEmailCampaign = () => {
             <h3 className="text-lg font-semibold text-slate-800 mb-3">
               🔄 Steps Overview
             </h3>
-            <ol className="list-decimal pl-6 space-y-2 text-sm text-slate-700">
-              {Object.entries(emailStepDescription).map(([key, desc]) => (
-                <li key={key}>
-                  {desc}
+            <ul className="list-disc pl-6 space-y-2 text-sm text-slate-700">
+              {emailCampaignSteps.map((step) => (
+                <li key={step.id} className="p-4 rounded-xl border border-slate-200 shadow-sm bg-slate-50">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-lg font-semibold text-slate-800">
+                      {step.id}
+                    </span>
+                    <span className={`text-sm font-medium px-2 py-1 rounded-full 
+                ${step.type === 'email' ? 'bg-blue-100 text-blue-700' : ''}
+                ${step.type === 'wait' ? 'bg-yellow-100 text-yellow-700' : ''}
+                ${step.type === 'condition' ? 'bg-purple-100 text-purple-700' : ''}
+              `}>
+                      {step.type === 'email' && '📧 Email'}
+                      {step.type === 'wait' && '⏱️ Wait'}
+                      {step.type === 'condition' && '🔀 Condition'}
+                    </span>
+                  </div>
+
+                  {step.type === 'email' && (
+                    <>
+                      <div
+                        className="text-sm text-gray-700 leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: step.template }}
+                      />
+                      <p className="text-xs text-gray-500 mt-2">
+                        {step.next ? (
+                          <>→ <strong>Next:</strong> {step.next}</>
+                        ) : (
+                          <>→ <strong>End</strong></>
+                        )}
+                      </p>
+                    </>
+                  )}
+
+                  {step.type === 'wait' && (
+                    <>
+                      <p className="text-sm text-gray-700">
+                        Wait for <strong>{Math.round(step.days * 24 * 60)} minutes</strong>
+                      </p>
+                      <p className="text-xs text-gray-500 mt-2">
+                        → <strong>Next:</strong> {step.next}
+                      </p>
+                    </>
+                  )}
+
+                  {step.type === 'condition' && (
+                    <>
+                      <p className="text-sm text-gray-700 mb-2">
+                        Condition: <strong>{step.condition}</strong>
+                      </p>
+                      <div className="flex flex-col gap-1 text-sm">
+                        {step.ifTrue && (
+                          <p className="text-green-700">✅ True → <strong>{step.ifTrue}</strong></p>
+                        )}
+                        {step.ifFalse && (
+                          <p className="text-red-700">❌ False → <strong>{step.ifFalse}</strong></p>
+                        )}
+                        {!step.ifTrue && !step.ifFalse && (
+                          <p className="text-gray-500">→ End</p>
+                        )}
+                      </div>
+                    </>
+                  )}
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         )}
       </div>
